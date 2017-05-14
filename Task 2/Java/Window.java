@@ -148,6 +148,25 @@ public class Window
 					// reading the "."
 					tempChar = reader.readLine().charAt(0);
 				}
+				
+				/*else if (type.equals("text")) {
+
+					input = reader.readLine().split(" ");
+
+					int rowBase = Integer.parseInt(input[0]);
+					int colBase = Integer.parseInt(input[1]);
+					int height = Integer.parseInt(input[2]);
+					int rowIncrement = Integer.parseInt(input[3]);
+					int colIncrement = Integer.parseInt(input[4]);
+					tempChar = reader.readLine().charAt(0);
+
+					Triangle triangle = new Triangle(rowBase, colBase, height, rowIncrement, colIncrement, tempChar);
+
+					window.addShape(triangle);
+
+					// reading the "."
+					tempChar = reader.readLine().charAt(0);
+				}*/
 
 			}
 

@@ -23,7 +23,7 @@ public class EightLines {
 		window.addShape(line);
 		window.display();*/
 		
-		Window window = Window.readSpecFromFile("E:\\Programming\\Git Projects\\UpworkProject3\\Task 2\\Java\\T1Drawing.txt");
-		window.display();
+		T2Main displayDrawing = new T2Main("T1Drawing.txt");
+		displayDrawing.displayDrawing();
 	}
 }
