@@ -84,6 +84,30 @@ void display(){
 		}
     }
 
+void writeSpecToFile(String fileName)
+{
+	try {
+		Iterator itr=items.iterator();  
+		
+		while(itr.hasNext())
+			((Shape)itr.next()).draw(this);
+		
+		PrintWriter out = new PrintWriter(new FileWriter(fileName, false), true);
+		for(int i=0;i<=numberOfRows+1;i++)
+		{
+			for(int j=0;j<=numberOfColumns+1;j++){
+				out.write(win[i][j] + " ");
+				}
+	
+			out.println();
+		}
+		out.close();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
+
 }
 
 
