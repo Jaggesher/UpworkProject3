@@ -85,13 +85,16 @@ public class Window
 					int rowIncrement = Integer.parseInt(input[3]);
 					int colIncrement = Integer.parseInt(input[4]);
 					tempChar = reader.readLine().charAt(0);
-					
+
 					Line line = new Line(rowBase, colBase, length, rowIncrement, colIncrement, tempChar);
-					
+
 					window.addShape(line);
 
+					// reading the "."
+					tempChar = reader.readLine().charAt(0);
+
 				}
-				
+
 				else if (type.equals("circle")) {
 
 					input = reader.readLine().split(" ");
@@ -100,10 +103,50 @@ public class Window
 					int colBase = Integer.parseInt(input[1]);
 					int radius = Integer.parseInt(input[2]);
 					tempChar = reader.readLine().charAt(0);
-					
-					Circle circle =  new Circle(rowBase, colBase, radius, tempChar);
-					
+
+					Circle circle = new Circle(rowBase, colBase, radius, tempChar);
+
 					window.addShape(circle);
+
+					// reading the "."
+					tempChar = reader.readLine().charAt(0);
+				}
+
+				else if (type.equals("rectangle")) {
+
+					input = reader.readLine().split(" ");
+
+					int rowBase = Integer.parseInt(input[0]);
+					int colBase = Integer.parseInt(input[1]);
+					int height = Integer.parseInt(input[2]);
+					int width = Integer.parseInt(input[3]);
+					tempChar = reader.readLine().charAt(0);
+
+					Rectangle rectangle = new Rectangle(rowBase, colBase, height, width, tempChar);
+
+					window.addShape(rectangle);
+
+					// reading the "."
+					tempChar = reader.readLine().charAt(0);
+				}
+
+				else if (type.equals("triangle")) {
+
+					input = reader.readLine().split(" ");
+
+					int rowBase = Integer.parseInt(input[0]);
+					int colBase = Integer.parseInt(input[1]);
+					int height = Integer.parseInt(input[2]);
+					int rowIncrement = Integer.parseInt(input[3]);
+					int colIncrement = Integer.parseInt(input[4]);
+					tempChar = reader.readLine().charAt(0);
+
+					Triangle triangle = new Triangle(rowBase, colBase, height, rowIncrement, colIncrement, tempChar);
+
+					window.addShape(triangle);
+
+					// reading the "."
+					tempChar = reader.readLine().charAt(0);
 				}
 
 			}
