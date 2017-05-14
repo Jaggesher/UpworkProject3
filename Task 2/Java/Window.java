@@ -91,6 +91,20 @@ public class Window
 					window.addShape(line);
 
 				}
+				
+				else if (type.equals("circle")) {
+
+					input = reader.readLine().split(" ");
+
+					int rowBase = Integer.parseInt(input[0]);
+					int colBase = Integer.parseInt(input[1]);
+					int radius = Integer.parseInt(input[2]);
+					tempChar = reader.readLine().charAt(0);
+					
+					Circle circle =  new Circle(rowBase, colBase, radius, tempChar);
+					
+					window.addShape(circle);
+				}
 
 			}
 
