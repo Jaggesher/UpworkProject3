@@ -38,9 +38,36 @@ public void addShape(Shape shape){
 
    
 public void removeShape(Shape shape){
-   
+	
 }
-    
+
+public void addGrid(){
+	for(int i=1, j=1;i<=numberOfColumns;i++,j++){
+		int tm=48+(j%10);
+		win[0][i]=(char)tm;
+		win[numberOfRows+1][i]=(char)tm;
+	}
+	
+	for(int i=1, j=1;i<=numberOfRows;i++,j++){
+		int tm=48+(j%10);
+		win[i][0]=(char)tm;
+		win[i][numberOfColumns+1]=(char)tm;
+	}
+}
+
+public void refreshImage(){
+	for(int i=0;i<=numberOfRows+1;i++)
+	{
+		for(int j=0;j<=numberOfColumns+1;j++)
+		{
+			if(i!=0 && j!=0 && i!=numberOfRows+1 && j!=numberOfColumns+1){
+				win[i][j]=' ';
+			}	
+		}
+	}
+	items.clear();
+}
+
 void display(){
 	Iterator itr=items.iterator();  
 		while(itr.hasNext()){ 

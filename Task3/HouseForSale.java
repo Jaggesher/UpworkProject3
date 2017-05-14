@@ -29,6 +29,19 @@ w.addShape(roof);
 Text msg = new Text(2,10, "FOR SALE", 1, 0);
 w.addShape(msg);
 w.display();
+
+
+//My Test ADD
+System.out.println("\n\n Tusk3 Proof\n\n");
+
+w.refreshImage();
+w.display();
+
+System.out.println("\n\n");
+w.addGrid();
+w.display();
+
+
 }
 }
 }
