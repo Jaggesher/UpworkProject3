@@ -1,7 +1,7 @@
-20 30 // number of rows and columns of the drawing window
-* // character for border
+20 30
+*
 .
-line // the shape is a line
-19 1 29 0 1 // row & column positions of base, length, row increment, column increment
-# // display character
+line
+19 1 29 0 1
+#
 .

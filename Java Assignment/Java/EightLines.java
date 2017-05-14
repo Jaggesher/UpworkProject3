@@ -3,7 +3,7 @@
 public class EightLines {
 
 	public static void main(String [] args){
-		/*Window window = new Window(20, 20, '*');
+		Window window = new Window(20, 20, '*');
 		int row = 10, column = 10, length = 5;
 		Line line = new Line(row, column, length, 0, 1, '1');
 		window.addShape(line);
@@ -21,9 +21,6 @@ public class EightLines {
 		window.addShape(line);
 		line = new Line(row, column, length, -1, 1, '8');
 		window.addShape(line);
-		window.display();*/
-		
-		Window window = Window.readSpecFromFile("E:\\Programming\\Git Projects\\UpworkProject3\\Task 2\\Java\\T1Drawing.txt");
 		window.display();
 	}
 }
