@@ -25,3 +25,4 @@ text
 2 10
 FOR SALE
 1 0
+.

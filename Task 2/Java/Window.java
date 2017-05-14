@@ -148,25 +148,27 @@ public class Window
 					// reading the "."
 					tempChar = reader.readLine().charAt(0);
 				}
-				
-				/*else if (type.equals("text")) {
+
+				else if (type.equals("text")) {
 
 					input = reader.readLine().split(" ");
 
 					int rowBase = Integer.parseInt(input[0]);
 					int colBase = Integer.parseInt(input[1]);
-					int height = Integer.parseInt(input[2]);
-					int rowIncrement = Integer.parseInt(input[3]);
-					int colIncrement = Integer.parseInt(input[4]);
-					tempChar = reader.readLine().charAt(0);
+					String text = reader.readLine();
 
-					Triangle triangle = new Triangle(rowBase, colBase, height, rowIncrement, colIncrement, tempChar);
+					input = reader.readLine().split(" ");
 
-					window.addShape(triangle);
+					int rowIncrement = Integer.parseInt(input[0]);
+					int colIncrement = Integer.parseInt(input[1]);
+
+					Text text2 = new Text(rowBase, colBase, text, rowIncrement, colIncrement);
+
+					window.addShape(text2);
 
 					// reading the "."
 					tempChar = reader.readLine().charAt(0);
-				}*/
+				}
 
 			}
 
