@@ -1,3 +1,7 @@
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 public class Line extends Shape {
 	int rowBase;
 	int colBase;
@@ -53,6 +57,28 @@ public class Line extends Shape {
 			colBase--;
 		else if (action == 'r')
 			colBase++;
+		else if (action == '+')
+			length++;
+		else if (action == '-')
+			length--;
+
+	}
+
+	@Override
+	public void writeToFile(String fileName) {
+		// TODO Auto-generated method stub
+
+		try {
+			PrintWriter out = new PrintWriter(new FileWriter(fileName, true), true);
+			out.println("line");
+			out.println(rowBase + " " + colBase + " " + length + " " + rowIncrement + " " + colIncrement);
+			out.println(drawingCharacter);
+			out.println(".");
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 }

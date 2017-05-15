@@ -58,7 +58,7 @@ public class Window
 				}
 			}
 		}
-		//readSpecFromFile();
+		// readSpecFromFile();
 	}
 
 	void display() {
@@ -229,6 +229,18 @@ public class Window
 
 		return window;
 	}
-	
+
+	public void addWindow(String fileName) {
+		try {
+			PrintWriter out = new PrintWriter(new FileWriter(fileName, false), true);
+			out.println(numberOfRows + " " + numberOfColumns);
+			out.println(borderCharacter);
+			out.println(".");
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }

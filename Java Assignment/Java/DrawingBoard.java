@@ -13,32 +13,27 @@ public class DrawingBoard {
 		// TODO Auto-generated method stub
 		String fileName;
 		System.out.println("Enter the window file name (or NEW):");
-		//BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
+
 		Scanner scanner = new Scanner(System.in);
 		fileName = scanner.nextLine();
-		//System.out.println(fileName);
-		if(fileName.equals("NEW"))
-		{
+		if (fileName.equals("NEW")) {
 			int row, column;
 			char character;
 			row = scanner.nextInt();
 			column = scanner.nextInt();
 			character = scanner.next().charAt(0);
-			//System.out.println(character);
-			window = new Window(row,column,character);
+			// System.out.println(character);
+			window = new Window(row, column, character);
 			window.addGrid();
 			window.display();
 			menu();
-		}
-		else
-		{
+		} else {
 			window = Window.readSpecFromFile(fileName);
 			window.addGrid();
 			window.display();
 			menu();
 		}
 	}
-	
 
 	private static void menu() {
 		// TODO Auto-generated method stub
@@ -47,64 +42,59 @@ public class DrawingBoard {
 		char input;
 		Scanner scanner = new Scanner(System.in);
 		input = scanner.next().charAt(0);
-		if(input == 'a')
-		{
+		if (input == 'a') {
 			System.out.println("circle rowBase colBase radius character");
 			System.out.println("line rowBase colBase length rowIncrement colIncrement character");
 			String type;
 			type = scanner.next();
-			//System.out.println(input);
-			int rowBase ,colBase, length ,rowIncrement,colIncrement ,radious;
+			// System.out.println(input);
+			int rowBase, colBase, length, rowIncrement, colIncrement, radius;
 			char character;
-			if(type.equals("line"))
-			{
+			if (type.equals("line")) {
 				rowBase = scanner.nextInt();
 				colBase = scanner.nextInt();
 				length = scanner.nextInt();
 				rowIncrement = scanner.nextInt();
 				colIncrement = scanner.nextInt();
 				character = scanner.next().charAt(0);
-//				System.out.println(rowBase);
-//				System.out.println(colBase);
-//				System.out.println(length);
-//				System.out.println(rowIncrement);
-//				System.out.println(colIncrement);
-//				System.out.println(character);
 				Line line = new Line(rowBase, colBase, length, rowIncrement, colIncrement, character);
 				window.addShape(line);
+
 				window.display();
 				menu();
+			} else if (type.equals("circle")) {
+				rowBase = scanner.nextInt();
+				colBase = scanner.nextInt();
+				radius = scanner.nextInt();
+				character = scanner.next().charAt(0);
+				Circle circle = new Circle(rowBase, colBase, radius, character);
+				window.addShape(circle);
+				window.display();
 			}
-		}
-		else if(input == 'e')
-		{
+		} else if (input == 'e') {
 			Iterator itr = window.items.iterator();
 			int count = 0;
 			while (itr.hasNext()) {
-				System.out.print(count+": ");
+				System.out.print(count + ": ");
 				((Shape) itr.next()).display();
 				count++;
 			}
-			
+
 			int temp = scanner.nextInt();
-			if(temp < count)
-			{
-				//System.out.println(window.items.size());
+			if (temp < count) {
+				// System.out.println(window.items.size());
 				window.items.remove(temp);
 				window.refreshImage();
 				window.display();
-			}
-			else {
+			} else {
 				System.out.println("Please give correct index number");
 			}
 			menu();
-		}
-		else if(input == 's')
-		{
+		} else if (input == 's') {
 			Iterator itr = window.items.iterator();
 			int count = 0;
 			while (itr.hasNext()) {
-				System.out.print(count+": ");
+				System.out.print(count + ": ");
 				((Shape) itr.next()).display();
 				count++;
 			}
@@ -112,18 +102,28 @@ public class DrawingBoard {
 			window.refreshImage();
 			window.display();
 			menu();
-		}
-		else if(input == 'u' || input=='d' || input=='l' || input=='r')
-		{
-			if(select == Integer.MAX_VALUE)
+		} else if (input == 'u' || input == 'd' || input == 'l' || input == 'r' || input == '+' || input == '-') {
+			if (select == Integer.MAX_VALUE)
 				System.out.println("Please Select First");
-			else{
+			else {
 				window.items.get(select).changeShape(input);
 				window.refreshImage();
 				window.display();
 			}
 			menu();
+		} else if (input == 'w') {
+			System.out.print("File name: ");
+			String fileName = scanner.next();
+			window.addWindow(fileName);
+			Iterator itr = window.items.iterator();
+			while (itr.hasNext()) {
+				((Shape) itr.next()).writeToFile(fileName);
+			}
+			menu();
+		} else if (input == 'q') {
+			System.exit(0);
 		}
+
 	}
 
 }

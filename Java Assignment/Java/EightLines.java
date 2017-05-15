@@ -1,8 +1,7 @@
 
-
 public class EightLines {
 
-	public static void main(String [] args){
+	public static void main(String[] args) {
 		Window window = new Window(20, 20, '*');
 		int row = 10, column = 10, length = 5;
 		Line line = new Line(row, column, length, 0, 1, '1');
