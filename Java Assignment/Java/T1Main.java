@@ -36,6 +36,7 @@ public class T1Main {
 		window.addShape(text);
 		addText(2,10,"FOR SALE",1,0);
 		window.display();
+		
 	}
 	
 	public static void addWindow(int row, int column, char character)
