@@ -34,6 +34,12 @@ public class Circle extends Shape
 				//System.out.println();
 
 	}
+
+	@Override
+	public void display()
+	{
+		System.out.println("circle("+rowBase+","+colBase+")("+radius+")("+drawingCharacter+')');
+	}
 }
 
 

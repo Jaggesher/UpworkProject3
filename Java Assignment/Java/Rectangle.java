@@ -47,5 +47,11 @@ public class Rectangle extends Shape
 				//System.out.println();
 
 	}
+
+	@Override
+	public void display() {
+		// TODO Auto-generated method stub
+		System.out.println("This program does not support Rectangle");
+	}
 }
 

@@ -36,6 +36,12 @@ public class Text extends Shape
 			}
 
 	}
+
+	@Override
+	public void display() {
+		// TODO Auto-generated method stub
+		System.out.println("This program does not support Text");
+	}
 }
 
 

@@ -110,6 +110,12 @@ public class Triangle extends Shape
 
 
 	}
+
+	@Override
+	public void display() {
+		// TODO Auto-generated method stub
+		System.out.println("This program does not support Triangle");
+	}
 }
 
 

@@ -38,4 +38,8 @@ public class Line extends Shape
 				//System.out.println();
 
 	}
+	public void display()
+	{
+		System.out.println("line("+rowBase+","+colBase+")("+length+")("+rowIncrement+','+colIncrement+")("+drawingCharacter+')');
+	}
 }

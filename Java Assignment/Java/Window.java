@@ -8,7 +8,7 @@ public class Window
 	public int numberOfRows, numberOfColumns;
 	public char borderCharacter;
 	public char win[][];
-	ArrayList<Shape> items;
+	public ArrayList<Shape> items;
 
 	public Window(int numberOfRows, int numberOfColumns, char borderCharacter) {
 		this.numberOfRows = numberOfRows;
@@ -58,7 +58,7 @@ public class Window
 				}
 			}
 		}
-		items.clear();
+		//readSpecFromFile();
 	}
 
 	void display() {
@@ -229,5 +229,6 @@ public class Window
 
 		return window;
 	}
+	
 
 }
