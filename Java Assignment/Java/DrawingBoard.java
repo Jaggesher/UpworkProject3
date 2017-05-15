@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class DrawingBoard {
 	static Window window;
+	static int select = Integer.MAX_VALUE;
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
@@ -95,6 +96,31 @@ public class DrawingBoard {
 			}
 			else {
 				System.out.println("Please give correct index number");
+			}
+			menu();
+		}
+		else if(input == 's')
+		{
+			Iterator itr = window.items.iterator();
+			int count = 0;
+			while (itr.hasNext()) {
+				System.out.print(count+": ");
+				((Shape) itr.next()).display();
+				count++;
+			}
+			select = scanner.nextInt();
+			window.refreshImage();
+			window.display();
+			menu();
+		}
+		else if(input == 'u' || input=='d' || input=='l' || input=='r')
+		{
+			if(select == Integer.MAX_VALUE)
+				System.out.println("Please Select First");
+			else{
+				window.items.get(select).changeShape(input);
+				window.refreshImage();
+				window.display();
 			}
 			menu();
 		}

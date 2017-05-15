@@ -25,4 +25,5 @@ public abstract class Shape
 
 	public abstract void draw(Window window);
 	public abstract void display();
+	public abstract void changeShape(char action);
 }

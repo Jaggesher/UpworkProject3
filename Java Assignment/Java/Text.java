@@ -42,6 +42,12 @@ public class Text extends Shape
 		// TODO Auto-generated method stub
 		System.out.println("This program does not support Text");
 	}
+
+	@Override
+	public void changeShape(char action) {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 

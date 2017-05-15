@@ -40,6 +40,20 @@ public class Circle extends Shape
 	{
 		System.out.println("circle("+rowBase+","+colBase+")("+radius+")("+drawingCharacter+')');
 	}
+
+	@Override
+	public void changeShape(char action) {
+		// TODO Auto-generated method stub
+		if (action == 'u')
+			rowBase--;
+		else if (action == 'd')
+			rowBase++;
+		else if (action == 'l')
+			colBase--;
+		else if (action == 'r')
+			colBase++;
+		
+	}
 }
 
 
