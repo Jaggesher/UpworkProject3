@@ -28,7 +28,8 @@ public class Circle extends Shape {
 			// System.out.println(i);
 			newRow = rowBase + (int) Math.round(radius * Math.cos(Math.toRadians(i)));
 			newCol = colBase + (int) Math.round(radius * Math.sin(Math.toRadians(i)));
-			win[newRow][newCol] = drawingCharacter;
+			if ((newRow <= window.numberOfRows && newRow > 0) && (newCol <= window.numberOfColumns && newCol > 0))
+				win[newRow][newCol] = drawingCharacter;
 		}
 
 		// System.out.println();

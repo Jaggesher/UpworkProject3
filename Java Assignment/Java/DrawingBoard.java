@@ -1,7 +1,5 @@
-import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -28,11 +26,20 @@ public class DrawingBoard {
 			window.display();
 			menu();
 		} else {
-			window = Window.readSpecFromFile(fileName);
-			window.addGrid();
-			window.display();
-			menu();
+			File file = new File(fileName);
+			if (!file.exists()) {
+				System.out.println("No Such File Found!");
+				scanner.close();
+				System.exit(0);
+			} else {
+				window = Window.readSpecFromFile(fileName);
+				window.addGrid();
+				window.display();
+				menu();
+			}
+
 		}
+		scanner.close();
 	}
 
 	private static void menu() {
@@ -59,9 +66,8 @@ public class DrawingBoard {
 				character = scanner.next().charAt(0);
 				Line line = new Line(rowBase, colBase, length, rowIncrement, colIncrement, character);
 				window.addShape(line);
-
 				window.display();
-				menu();
+
 			} else if (type.equals("circle")) {
 				rowBase = scanner.nextInt();
 				colBase = scanner.nextInt();
@@ -71,6 +77,7 @@ public class DrawingBoard {
 				window.addShape(circle);
 				window.display();
 			}
+			menu();
 		} else if (input == 'e') {
 			Iterator itr = window.items.iterator();
 			int count = 0;
@@ -85,7 +92,6 @@ public class DrawingBoard {
 				// System.out.println(window.items.size());
 				window.items.remove(temp);
 				window.refreshImage();
-				window.display();
 			} else {
 				System.out.println("Please give correct index number");
 			}
@@ -100,7 +106,6 @@ public class DrawingBoard {
 			}
 			select = scanner.nextInt();
 			window.refreshImage();
-			window.display();
 			menu();
 		} else if (input == 'u' || input == 'd' || input == 'l' || input == 'r' || input == '+' || input == '-') {
 			if (select == Integer.MAX_VALUE)
@@ -108,20 +113,24 @@ public class DrawingBoard {
 			else {
 				window.items.get(select).changeShape(input);
 				window.refreshImage();
-				window.display();
 			}
 			menu();
 		} else if (input == 'w') {
 			System.out.print("File name: ");
 			String fileName = scanner.next();
-			window.addWindow(fileName);
+			window.writeToFile(fileName);
 			Iterator itr = window.items.iterator();
 			while (itr.hasNext()) {
 				((Shape) itr.next()).writeToFile(fileName);
 			}
 			menu();
 		} else if (input == 'q') {
+			System.out.println("Thank You!");
+			scanner.close();
 			System.exit(0);
+		} else {
+			System.out.println("Enter a valid command!");
+			menu();
 		}
 
 	}

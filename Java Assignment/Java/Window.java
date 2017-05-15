@@ -58,7 +58,7 @@ public class Window
 				}
 			}
 		}
-		// readSpecFromFile();
+		display();
 	}
 
 	void display() {
@@ -76,161 +76,141 @@ public class Window
 	}
 
 	void writeSpecToFile(String fileName) {
-		try {
-			Iterator itr = items.iterator();
 
-			while (itr.hasNext())
-				((Shape) itr.next()).draw(this);
+		Iterator itr = items.iterator();
 
-			PrintWriter out = new PrintWriter(new FileWriter(fileName, false), true);
-			for (int i = 0; i <= numberOfRows + 1; i++) {
-				for (int j = 0; j <= numberOfColumns + 1; j++) {
-					out.write(win[i][j] + " ");
-				}
+		writeToFile(fileName);
+		while (itr.hasNext())
+			((Shape) itr.next()).writeToFile(fileName);
 
-				out.println();
-			}
-			out.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
-	public static Window readSpecFromFile(String fileName) {
+	public static Window readSpecFromFile(String fileName) throws IOException {
 		Window window = null;
 
 		int tempNumberOfRows, tempNnumberOfColumns;
 		char tempChar;
+		BufferedReader reader = new BufferedReader(new FileReader(fileName));
 
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader(fileName));
+		// At first there will be the row and column number in file
+		String tempString[] = reader.readLine().split(" ");
+		tempNumberOfRows = Integer.parseInt(tempString[0]);
+		tempNnumberOfColumns = Integer.parseInt(tempString[1]);
 
-			// At first there will be the row and column number in file
-			String tempString[] = reader.readLine().split(" ");
-			tempNumberOfRows = Integer.parseInt(tempString[0]);
-			tempNnumberOfColumns = Integer.parseInt(tempString[1]);
+		tempChar = reader.readLine().charAt(0);
 
-			tempChar = reader.readLine().charAt(0);
+		window = new Window(tempNumberOfRows, tempNnumberOfColumns, tempChar);
+		tempChar = reader.readLine().charAt(0);
 
-			window = new Window(tempNumberOfRows, tempNnumberOfColumns, tempChar);
-			tempChar = reader.readLine().charAt(0);
+		// reading file until the end
+		String type;
+		while ((type = reader.readLine()) != null) {
 
-			// reading file until the end
-			String type;
-			while ((type = reader.readLine()) != null) {
+			String input[] = null;
+			// line will be added in the window
+			if (type.equals("line")) {
 
-				String input[] = null;
-				// line will be added in the window
-				if (type.equals("line")) {
+				input = reader.readLine().split(" ");
 
-					input = reader.readLine().split(" ");
+				int rowBase = Integer.parseInt(input[0]);
+				int colBase = Integer.parseInt(input[1]);
+				int length = Integer.parseInt(input[2]);
+				int rowIncrement = Integer.parseInt(input[3]);
+				int colIncrement = Integer.parseInt(input[4]);
+				tempChar = reader.readLine().charAt(0);
 
-					int rowBase = Integer.parseInt(input[0]);
-					int colBase = Integer.parseInt(input[1]);
-					int length = Integer.parseInt(input[2]);
-					int rowIncrement = Integer.parseInt(input[3]);
-					int colIncrement = Integer.parseInt(input[4]);
-					tempChar = reader.readLine().charAt(0);
+				Line line = new Line(rowBase, colBase, length, rowIncrement, colIncrement, tempChar);
 
-					Line line = new Line(rowBase, colBase, length, rowIncrement, colIncrement, tempChar);
+				window.addShape(line);
 
-					window.addShape(line);
-
-					// reading the "."
-					tempChar = reader.readLine().charAt(0);
-
-				}
-
-				else if (type.equals("circle")) {
-
-					input = reader.readLine().split(" ");
-
-					int rowBase = Integer.parseInt(input[0]);
-					int colBase = Integer.parseInt(input[1]);
-					int radius = Integer.parseInt(input[2]);
-					tempChar = reader.readLine().charAt(0);
-
-					Circle circle = new Circle(rowBase, colBase, radius, tempChar);
-
-					window.addShape(circle);
-
-					// reading the "."
-					tempChar = reader.readLine().charAt(0);
-				}
-
-				else if (type.equals("rectangle")) {
-
-					input = reader.readLine().split(" ");
-
-					int rowBase = Integer.parseInt(input[0]);
-					int colBase = Integer.parseInt(input[1]);
-					int height = Integer.parseInt(input[2]);
-					int width = Integer.parseInt(input[3]);
-					tempChar = reader.readLine().charAt(0);
-
-					Rectangle rectangle = new Rectangle(rowBase, colBase, height, width, tempChar);
-
-					window.addShape(rectangle);
-
-					// reading the "."
-					tempChar = reader.readLine().charAt(0);
-				}
-
-				else if (type.equals("triangle")) {
-
-					input = reader.readLine().split(" ");
-
-					int rowBase = Integer.parseInt(input[0]);
-					int colBase = Integer.parseInt(input[1]);
-					int height = Integer.parseInt(input[2]);
-					int rowIncrement = Integer.parseInt(input[3]);
-					int colIncrement = Integer.parseInt(input[4]);
-					tempChar = reader.readLine().charAt(0);
-
-					Triangle triangle = new Triangle(rowBase, colBase, height, rowIncrement, colIncrement, tempChar);
-
-					window.addShape(triangle);
-
-					// reading the "."
-					tempChar = reader.readLine().charAt(0);
-				}
-
-				else if (type.equals("text")) {
-
-					input = reader.readLine().split(" ");
-
-					int rowBase = Integer.parseInt(input[0]);
-					int colBase = Integer.parseInt(input[1]);
-					String text = reader.readLine();
-
-					input = reader.readLine().split(" ");
-
-					int rowIncrement = Integer.parseInt(input[0]);
-					int colIncrement = Integer.parseInt(input[1]);
-
-					Text text2 = new Text(rowBase, colBase, text, rowIncrement, colIncrement);
-
-					window.addShape(text2);
-
-					// reading the "."
-					tempChar = reader.readLine().charAt(0);
-				}
+				// reading the "."
+				tempChar = reader.readLine().charAt(0);
 
 			}
 
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			else if (type.equals("circle")) {
+
+				input = reader.readLine().split(" ");
+
+				int rowBase = Integer.parseInt(input[0]);
+				int colBase = Integer.parseInt(input[1]);
+				int radius = Integer.parseInt(input[2]);
+				tempChar = reader.readLine().charAt(0);
+
+				Circle circle = new Circle(rowBase, colBase, radius, tempChar);
+
+				window.addShape(circle);
+
+				// reading the "."
+				tempChar = reader.readLine().charAt(0);
+			}
+
+			else if (type.equals("rectangle")) {
+
+				input = reader.readLine().split(" ");
+
+				int rowBase = Integer.parseInt(input[0]);
+				int colBase = Integer.parseInt(input[1]);
+				int height = Integer.parseInt(input[2]);
+				int width = Integer.parseInt(input[3]);
+				tempChar = reader.readLine().charAt(0);
+
+				Rectangle rectangle = new Rectangle(rowBase, colBase, height, width, tempChar);
+
+				window.addShape(rectangle);
+
+				// reading the "."
+				tempChar = reader.readLine().charAt(0);
+			}
+
+			else if (type.equals("triangle")) {
+
+				input = reader.readLine().split(" ");
+
+				int rowBase = Integer.parseInt(input[0]);
+				int colBase = Integer.parseInt(input[1]);
+				int height = Integer.parseInt(input[2]);
+				int rowIncrement = Integer.parseInt(input[3]);
+				int colIncrement = Integer.parseInt(input[4]);
+				tempChar = reader.readLine().charAt(0);
+
+				Triangle triangle = new Triangle(rowBase, colBase, height, rowIncrement, colIncrement, tempChar);
+
+				window.addShape(triangle);
+
+				// reading the "."
+				tempChar = reader.readLine().charAt(0);
+			}
+
+			else if (type.equals("text")) {
+
+				input = reader.readLine().split(" ");
+
+				int rowBase = Integer.parseInt(input[0]);
+				int colBase = Integer.parseInt(input[1]);
+				String text = reader.readLine();
+
+				input = reader.readLine().split(" ");
+
+				int rowIncrement = Integer.parseInt(input[0]);
+				int colIncrement = Integer.parseInt(input[1]);
+
+				Text text2 = new Text(rowBase, colBase, text, rowIncrement, colIncrement);
+
+				window.addShape(text2);
+
+				// reading the "."
+				tempChar = reader.readLine().charAt(0);
+			}
+
 		}
+		reader.close();
 
 		return window;
+
 	}
 
-	public void addWindow(String fileName) {
+	public void writeToFile(String fileName) {
 		try {
 			PrintWriter out = new PrintWriter(new FileWriter(fileName, false), true);
 			out.println(numberOfRows + " " + numberOfColumns);

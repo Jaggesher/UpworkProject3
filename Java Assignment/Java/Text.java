@@ -29,7 +29,7 @@ public class Text extends Shape {
 		int newCol = colBase;
 
 		for (int i = 0; i < length; i++) {
-
+			
 			win[newRow][newCol] = text.charAt(i);
 			newRow += rowIncrement;
 			newCol += colIncrement;

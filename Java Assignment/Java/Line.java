@@ -31,8 +31,8 @@ public class Line extends Shape {
 		int newCol = colBase;
 
 		for (int i = 0; i <= length; i++) {
-
-			win[newRow][newCol] = drawingCharacter;
+			if ((newRow <= window.numberOfRows && newRow > 0) && (newCol <= window.numberOfColumns && newCol > 0))
+				win[newRow][newCol] = drawingCharacter;
 			newRow += rowIncrement;
 			newCol += colIncrement;
 
